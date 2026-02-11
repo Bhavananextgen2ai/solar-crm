@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+        <h2>Get in Touch with Our Team</h2>
+        <p>Ready to transform your solar business? We're here to help you get started.</p>
+    </div>
+
+    <!-- Contact Info Cards -->
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <div class="card shadow text-center p-3 mb-3">
+                <h5>📞 Sales Inquiry</h5>
+                <p>+91 98700 60464</p>
+                <small>Mon-Fri, 9:00 AM - 6:00 PM IST</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow text-center p-3 mb-3">
+                <h5>📞 Support Helpline</h5>
+                <p>+91 82002 03616</p>
+                <small>Mon-Fri, 9:00 AM - 6:00 PM IST</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow text-center p-3 mb-3">
+                <h5>🔥 Hot Line Number</h5>
+                <p>+91 72020 60464</p>
+                <small>Available 24/7 for emergencies</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="card shadow p-4 mb-5">
+        <h4 class="mb-3">Let's Discuss Your Requirements</h4>
+        <form method="POST" action="#">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="text" name="first_name" class="form-control" placeholder="First Name" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <input type="text" name="company_name" class="form-control" placeholder="Company Name" required>
+            </div>
+            <div class="mb-3">
+                <select name="state" class="form-control" required>
+                    <option value="">Select your state</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <!-- Add more states -->
+                </select>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" name="phone" class="form-control" placeholder="Phone Number" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <textarea name="business_info" class="form-control" placeholder="Tell us about your business" rows="4" required></textarea>
+            </div>
+            <div class="form-check mb-3">
+                <input type="checkbox" name="privacy" class="form-check-input" required>
+                <label class="form-check-label">I agree to the Privacy Policy and Terms & Conditions.</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Book Free Demo</button>
+        </form>
+    </div>
+
+    <!-- Office & WhatsApp -->
+    <div class="row text-center">
+        <div class="col-md-6 mb-3">
+            <h5>Office Address</h5>
+            <p>Brookfieldz 9To5, 605, Old Chhani Rd, Vadodara, Gujarat 390024, India.</p>
+            <p>Email Support: <a href="mailto:support@solarmatrix.in">support@solarmatrix.in</a></p>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h5>Prefer WhatsApp? 💬</h5>
+            <p>Get instant responses and quick support.</p>
+            <a href="https://wa.me/919870060464?text=BOOK%20A%20DEMO" class="btn btn-success">Chat on WhatsApp</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

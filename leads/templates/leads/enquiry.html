@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- PAGE TITLE -->
+<div class="container py-4">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-success">Solar Enquiry</h2>
+        <p class="text-muted">
+            Get expert guidance and a customized solar solution for your needs
+        </p>
+    </div>
+
+    <div class="row align-items-center">
+
+        <!-- LEFT : IMAGE + INFO -->
+        <div class="col-md-6 mb-4 mb-md-0 text-center">
+            <img src="{% static 'images/solar_enquiry.png' %}"
+                 class="img-fluid rounded-4 shadow-sm"
+                 style="max-height:420px"
+                 alt="Solar CRM Enquiry">
+
+            <h4 class="fw-bold mt-4 text-success">
+                Start Your Solar Journey ☀
+            </h4>
+            <p class="text-muted px-3">
+                Submit your enquiry and our certified solar experts will assist you
+                from consultation to installation and maintenance.
+            </p>
+
+            <!-- TRUST POINTS -->
+            <div class="d-flex justify-content-center gap-3 mt-3">
+                <span class="badge bg-success">✔ Trusted Experts</span>
+                <span class="badge bg-success">✔ Quick Response</span>
+                <span class="badge bg-success">✔ End-to-End Support</span>
+            </div>
+        </div>
+
+        <!-- RIGHT : ENQUIRY FORM -->
+        <div class="col-md-6">
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-success text-white text-center fs-5 rounded-top-4">
+                    🌱 Solar Lead Enquiry
+                </div>
+
+                <div class="card-body p-4">
+
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Full Name</label>
+                            <input type="text"
+                                   class="form-control form-control-lg"
+                                   name="name"
+                                   placeholder="Enter your full name"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Email Address</label>
+                            <input type="email"
+                                   class="form-control form-control-lg"
+                                   name="email"
+                                   placeholder="example@email.com"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+    <label class="form-label fw-semibold">Phone Number</label>
+
+    <div class="input-group">
+        <input type="text"
+               class="form-control"
+               name="phone"
+               id="phone"
+               placeholder="+91 XXXXX XXXXX"
+               required>
+
+        <button type="button"
+                class="btn btn-outline-success"
+                onclick="sendOTP()">
+            Send OTP
+        </button>
+    </div>
+</div>
+
+<div class="mb-3" id="otpSection" style="display:none;">
+    <label class="form-label fw-semibold">Enter OTP</label>
+
+    <div class="input-group">
+        <input type="text"
+               class="form-control"
+               id="otp"
+               placeholder="Enter 6 digit OTP">
+
+        <button type="button"
+                class="btn btn-success"
+                onclick="verifyOTP()">
+            Verify
+        </button>
+    </div>
+
+    <small id="otpMessage" class="text-muted"></small>
+</div>
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Interested Stage</label>
+                            <select class="form-select form-select-lg" name="status">
+                                <option value="Call">Initial Call</option>
+                                <option value="Follow-up">Follow-up</option>
+                                <option value="Registration">Registration</option>
+                                <option value="Installation">Installation</option>
+                                <option value="Setup Done">Setup Completed</option>
+                            </select>
+                        </div>
+
+                        <!-- CRM FIELD -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">Customer Type</label>
+                            <select class="form-select form-select-lg" name="customer_type">
+                                <option>Residential</option>
+                                <option>Commercial</option>
+                                <option>Industrial</option>
+                            </select>
+                        </div>
+
+                        <button class="btn btn-success btn-lg w-100">
+                            <i class="fas fa-paper-plane me-2"></i> Submit Enquiry
+                        </button>
+                    </form>
+
+                    <!-- QUICK CONTACT -->
+                    <p class="text-center text-muted mt-3 mb-0">
+                        Need instant help?
+                        <a href="tel:+919876543210" class="text-success fw-semibold">Call</a> |
+                        <a href="https://wa.me/919876543210" class="text-success fw-semibold">WhatsApp</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script>
+function sendOTP() {
+    let phone = document.getElementById("phone").value;
+
+    fetch("/leads/send-otp/", {
+
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({ phone: phone })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "success") {
+            document.getElementById("otpSection").style.display = "block";
+            document.getElementById("otpMessage").innerText = "OTP sent successfully!";
+        }
+    });
+}
+
+function verifyOTP() {
+    let otp = document.getElementById("otp").value;
+
+  fetch("/leads/verify-otp/", {
+
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        body: JSON.stringify({ otp: otp })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === "verified") {
+            document.getElementById("otpMessage").innerText = "Phone Verified ✅";
+            document.getElementById("otpMessage").classList.add("text-success");
+        } else {
+            document.getElementById("otpMessage").innerText = "Invalid OTP ❌";
+            document.getElementById("otpMessage").classList.add("text-danger");
+        }
+    });
+}
+</script>
+
+{% endblock %}

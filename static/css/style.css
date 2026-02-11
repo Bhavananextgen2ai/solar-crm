@@ -1,0 +1,323 @@
+/* ================================
+   GLOBAL
+================================ */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ================================
+   FOOTER (SOLAR CRM)
+================================ */
+.crm-footer {
+    background: #1f252b;
+    color: #ccc;
+    padding: 40px 0 20px;
+    font-size: 14px;
+}
+
+.crm-footer .brand {
+    color: #28a745;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.footer-title {
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.footer-text {
+    color: #aaaaaa;
+    line-height: 1.6;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #aaaaaa;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: #28a745;
+}
+
+.footer-contact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    color: #aaaaaa;
+}
+
+.crm-footer hr {
+    border-color: #333;
+    margin: 25px 0 15px;
+}
+
+.copyright {
+    color: #888;
+    font-size: 13px;
+    text-align: center;
+}
+.card h1 {
+    font-size: 2.5rem;
+}
+.client-logo {
+    max-height: 60px;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+}
+
+.client-logo:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.counter {
+    font-size: 3rem;
+}
+.modal-content {
+    border-radius: 12px;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #198754, #28a745);
+    color: white;
+}
+
+.modal-title {
+    font-size: 1.1rem;
+}
+
+.modal-footer button {
+    font-size: 1rem;
+    padding: 12px;
+}
+.card h2 {
+    color: #198754;
+}
+
+.card ul li {
+    margin-bottom: 8px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    transition: 0.3s;
+}
+.table th, .table td {
+    vertical-align: middle;
+    font-size: 15px;
+}
+
+.table thead th {
+    font-size: 16px;
+}
+
+.table tbody tr:hover {
+    background-color: #f8fdf9;
+}
+.grayscale {
+    filter: grayscale(100%);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.grayscale:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
+}
+/* Floating Enquiry Button */
+.chat-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+}
+
+.chat-float a {
+    width: 60px;
+    height: 60px;
+    background: #ff6a2b;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.chat-float a:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+.chat-float a::after {
+    content: "Enquiry";
+    position: absolute;
+    right: 70px;
+    background: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.chat-float a:hover::after {
+    opacity: 1;
+}
+section ul li {
+    margin-bottom: 8px;
+}
+/* Floating WhatsApp & Call Buttons */
+.floating-actions {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 9999;
+}
+
+.fab {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.fab:hover {
+    transform: scale(1.1);
+}
+
+/* WhatsApp */
+.fab.whatsapp {
+    background-color: #25D366;
+}
+
+/* Call */
+.fab.call {
+    background-color: #0d6efd;
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+    100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+.fab.whatsapp {
+    animation: pulse 2s infinite;
+}
+/* Container controls spacing */
+.floating-call-enquiry {
+    position: fixed;
+    bottom: 100px;   /* keeps it above WhatsApp */
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;       /* THIS prevents overlap */
+    z-index: 9999;
+}
+
+/* Common style */
+.float-btn {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: transform 0.25s ease;
+}
+
+.float-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Colors */
+.float-btn.enquiry {
+    background-color: #198754; /* green */
+}
+
+.float-btn.call {
+    background-color: #0d6efd; /* blue */
+}
+body {
+    background: #f5f7fb;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.form-control {
+    height: 45px;
+    border-radius: 8px;
+}
+
+.btn-success {
+    height: 45px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+/* Fix navbar dropdown alignment */
+.navbar .dropdown-menu {
+    margin-top: 10px;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    min-width: 180px;
+}
+
+/* Dropdown item styling */
+.navbar .dropdown-item {
+    padding: 8px 18px;
+    font-weight: 500;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #198754;
+    color: #fff;
+}

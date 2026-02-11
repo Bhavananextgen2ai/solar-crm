@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <!-- LEAD INFO -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Lead Details</h4>
+        </div>
+
+        <div class="card-body row g-3">
+            <div class="col-md-6">
+                <p><strong>Name:</strong> {{ lead.name }}</p>
+                <p><strong>Email:</strong> {{ lead.email }}</p>
+            </div>
+
+            <div class="col-md-6">
+                <p><strong>Phone:</strong> {{ lead.phone }}</p>
+                <p>
+                    <strong>Status:</strong>
+                    <span class="badge bg-success">{{ lead.status }}</span>
+                </p>
+            </div>
+
+            <div class="col-12">
+                <!-- ✅ FIXED HERE -->
+                <a href="{% url 'leads:lead_edit' lead.id %}" class="btn btn-outline-primary">
+                    Edit Lead
+                </a>
+
+                <a href="{% url 'leads:lead_list' %}" class="btn btn-secondary ms-2">
+                    Back to Leads
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADD NOTE -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">Add Note</h5>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <textarea name="note"
+                          class="form-control mb-3"
+                          rows="3"
+                          placeholder="Enter note..."
+                          required></textarea>
+                <button class="btn btn-primary">
+                    Add Note
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">Notes History</h5>
+        </div>
+        <div class="card-body">
+            {% for note in notes %}
+                <div class="border rounded p-3 mb-2">
+                    <p class="mb-1">{{ note.note }}</p>
+                    <small class="text-muted">
+                        {{ note.created_at|date:"M d, Y h:i A" }}
+                    </small>
+                </div>
+            {% empty %}
+                <p class="text-muted">No notes added yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

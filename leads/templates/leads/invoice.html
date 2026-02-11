@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Invoice: {{ invoice.invoice_number }}</h2>
+    <p><strong>Date:</strong> {{ invoice.date|date:"d M Y" }}</p>
+
+    <h4>Lead Details</h4>
+    <ul>
+        <li><strong>Name:</strong> {{ invoice.lead_name }}</li>
+        <li><strong>Email:</strong> {{ invoice.lead_email }}</li>
+        <li><strong>Phone:</strong> {{ invoice.lead_phone }}</li>
+        <li><strong>Status:</strong> {{ invoice.status }}</li>
+    </ul>
+
+    <p><em>This is a system-generated invoice for your reference.</em></p>
+
+    <a href="{% url 'leads:list' %}" class="btn btn-primary">Back to Leads</a>
+</div>
+{% endblock %}

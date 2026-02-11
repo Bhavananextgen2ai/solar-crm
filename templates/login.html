@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Solar CRM</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f5f7fb;
+        }
+
+        .login-wrapper {
+            min-height: calc(100vh - 120px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .login-card h4 {
+            font-weight: 700;
+        }
+
+        .form-control {
+            height: 45px;
+            border-radius: 8px;
+        }
+
+        .btn-login {
+            height: 45px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ✅ NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/">Solar CRM</a>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/enquiry/">Enquiry</a></li>
+            <li class="nav-item"><a class="nav-link" href="/leads/">Leads</a></li>
+            <li class="nav-item"><a class="nav-link" href="/dashboard/">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link active fw-semibold" href="#">🔐 Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ✅ LOGIN SECTION -->
+<div class="login-wrapper">
+    <div class="login-card">
+
+        <div class="text-center mb-4">
+            <h4>Welcome Back</h4>
+            <p class="text-muted">Login to manage your Solar CRM</p>
+        </div>
+
+        {% if error %}
+            <div class="alert alert-danger text-center">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Enter username" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100 btn-login mt-3">
+                Login
+            </button>
+        </form>
+
+    </div>
+</div>
+
+<!-- ✅ FOOTER -->
+<footer class="bg-white border-top mt-5">
+    <div class="container py-4">
+        <div class="row">
+
+            <div class="col-md-4">
+                <h6 class="fw-bold">Solar CRM</h6>
+                <p class="text-muted small">
+                    Complete CRM solution for solar companies to manage leads,
+                    installations, billing and growth.
+                </p>
+            </div>
+
+            <div class="col-md-4">
+                <h6 class="fw-bold">Quick Links</h6>
+                <ul class="list-unstyled small">
+                    <li><a href="/" class="text-decoration-none text-muted">Home</a></li>
+                    <li><a href="/enquiry/" class="text-decoration-none text-muted">Enquiry</a></li>
+                    <li><a href="/leads/" class="text-decoration-none text-muted">Leads</a></li>
+                    <li><a href="/dashboard/" class="text-decoration-none text-muted">Dashboard</a></li>
+                    <li><a href="/contact/" class="text-decoration-none text-muted">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h6 class="fw-bold">Contact</h6>
+                <p class="small text-muted mb-1">Bengaluru, India</p>
+                <p class="small text-muted mb-1">support@solarcrm.com</p>
+                <p class="small text-muted">+91 98765 43210</p>
+            </div>
+
+        </div>
+
+        <hr>
+        <p class="text-center small text-muted mb-0">
+            © 2026 Solar CRM | Lead • Installation • Billing Management
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>

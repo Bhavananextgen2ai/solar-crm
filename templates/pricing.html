@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container py-5">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold">Solar CRM Pricing</h2>
+    <p class="text-muted">Simple plans for solar businesses</p>
+  </div>
+
+  <div class="row g-4 justify-content-center">
+
+    <!-- BASIC -->
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body text-center">
+          <h5 class="fw-bold">Starter</h5>
+          <h2 class="my-3">₹999 / month</h2>
+          <ul class="list-unstyled mb-4">
+            <li>✔ Lead Management</li>
+            <li>✔ Invoice Generation</li>
+            <li>✔ Basic Reports</li>
+          </ul>
+          <button class="btn btn-outline-success w-100"
+            onclick="makePayment(999)">
+            Buy Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRO -->
+    <div class="col-md-4">
+      <div class="card shadow-lg border-success h-100">
+        <div class="card-body text-center">
+          <h5 class="fw-bold">Professional</h5>
+          <h2 class="my-3">₹2499 / month</h2>
+          <ul class="list-unstyled mb-4">
+            <li>✔ Everything in Starter</li>
+            <li>✔ Installation Tracking</li>
+            <li>✔ Analytics Dashboard</li>
+            <li>✔ Priority Support</li>
+          </ul>
+          <button class="btn btn-success w-100"
+            onclick="makePayment(2499)">
+            Buy Now
+          </button>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="container py-5">
+  <h3 class="text-center fw-bold mb-4">
+    Compare Solar CRM Plans
+  </h3>
+
+  <div class="table-responsive">
+    <table class="table table-bordered text-center align-middle">
+      <thead class="table-success">
+        <tr>
+          <th>Features</th>
+          <th>Starter</th>
+          <th>Professional</th>
+          <th>Enterprise</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Lead Management</td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>✔</td>
+        </tr>
+        <tr>
+          <td>Quotation Management</td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>✔</td>
+        </tr>
+        <tr>
+          <td>Installation Tracking</td>
+          <td>✖</td>
+          <td>✔</td>
+          <td>✔</td>
+        </tr>
+        <tr>
+          <td>Invoice & GST Billing</td>
+          <td>✔</td>
+          <td>✔</td>
+          <td>✔</td>
+        </tr>
+        <tr>
+          <td>Analytics Dashboard</td>
+          <td>✖</td>
+          <td>✔</td>
+          <td>✔</td>
+        </tr>
+        <tr>
+          <td>AI Power Prediction</td>
+          <td>✖</td>
+          <td>✖</td>
+          <td>✔</td>
+        </tr>
+        <tr>
+          <td>Solar Tracker Integration</td>
+          <td>✖</td>
+          <td>✖</td>
+          <td>✔</td>
+        </tr>
+        <tr>
+          <td>Dedicated Support</td>
+          <td>Email</td>
+          <td>Priority</td>
+          <td>24×7 Dedicated</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+  
+<div class="container py-5">
+  <h3 class="text-center fw-bold mb-5">
+    What Our Customers Say
+  </h3>
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <p class="text-muted">
+            “Solar CRM helped us track installations and invoices perfectly.
+            Our revenue tracking became 10× easier.”
+          </p>
+          <div class="d-flex align-items-center mt-3">
+            
+            <div>
+              <h6 class="mb-0">Ramesh Kumar</h6>
+              <small class="text-muted">Director, SunVolt Energy</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <p class="text-muted">
+            “The analytics dashboard gives us complete clarity on power
+            generation and customer performance.”
+          </p>
+          <div class="d-flex align-items-center mt-3">
+            <div>
+              <h6 class="mb-0">Anita Sharma</h6>
+              <small class="text-muted">Operations Head, GreenSpark Solar</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <p class="text-muted">
+            “We moved from Excel to Solar CRM. Now installation,
+            billing, and service are fully automated.”
+          </p>
+          <div class="d-flex align-items-center mt-3">
+            
+            <div>
+              <h6 class="mb-0">Vikram Patil</h6>
+              <small class="text-muted">Founder, EcoRay Power</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

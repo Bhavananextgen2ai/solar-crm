@@ -1,0 +1,456 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+{% load static %}
+
+<!-- HERO SECTION -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <!-- TEXT CONTENT -->
+            <div class="col-md-6 mb-4 mb-md-0">
+                <h1 class="fw-bold display-4">
+                    Build Smarter Solar Businesses with
+                    <span class="text-success">Solar CRM</span>
+                </h1>
+
+                <p class="text-muted fs-5 mt-3">
+                    Track leads, installations, invoices & performance in one powerful,
+                    intuitive platform built for solar professionals.
+                </p>
+
+                <a href="{% url 'leads:enquiry' %}" class="btn btn-success btn-lg mt-3">
+                    Get Started — It’s Free
+                </a>
+            </div>
+
+            <!-- HERO IMAGE -->
+            <div class="col-md-6 text-center">
+                <img
+                    src="{% static 'images/solar_hero.png' %}"
+                    class="img-fluid rounded shadow-sm"
+                    alt="Solar CRM Dashboard">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- LIVE STATS -->
+<section class="py-5">
+    <div class="container">
+
+        <div class="row text-center g-4">
+
+            <div class="col-md-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h2 class="text-success fw-bold">{{ total_leads }}</h2>
+                        <p class="text-muted">Total Leads</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h2 class="text-success fw-bold">{{ active_leads }}</h2>
+                        <p class="text-muted">Active Installations</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h2 class="text-success fw-bold">{{ total_invoices }}</h2>
+                        <p class="text-muted">Invoices Generated</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h2 class="text-success fw-bold">₹ {{ total_revenue }}</h2>
+                        <p class="text-muted">Total Revenue</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section class="py-5 bg-light">
+    <div class="container">
+
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">Everything You Need for Solar CRM</h2>
+            <p class="text-muted">
+                Designed for solar sales teams, installers & business owners.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-md-4">
+                <div class="card h-100 text-center border-0">
+                    <div class="card-body">
+                        <i class="fa-solid fa-list-check fa-2x text-success mb-3"></i>
+                        <h5 class="fw-bold">Lead Pipeline</h5>
+                        <p class="text-muted">Organize and track every lead from first call.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 text-center border-0">
+                    <div class="card-body">
+                        <i class="fa-solid fa-file-invoice-dollar fa-2x text-success mb-3"></i>
+                        <h5 class="fw-bold">Invoice & Payments</h5>
+                        <p class="text-muted">Instant GST invoices & manage payments effortlessly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 text-center border-0">
+                    <div class="card-body">
+                        <i class="fa-solid fa-chart-line fa-2x text-success mb-3"></i>
+                        <h5 class="fw-bold">Smart Analytics</h5>
+                        <p class="text-muted">Visual charts to track monthly performance.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- SOLAR SUCCESS SECTION -->
+<section class="py-5 bg-white">
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <!-- TEXT CONTENT -->
+            <div class="col-md-6 mb-4 mb-md-0">
+                <h2 class="fw-bold">
+                    SolarSuccess Built on <span class="text-success">NetSuite</span>
+                </h2>
+
+                <h5 class="text-muted mt-2">
+                    Sales & CRM Optimized for Solar Businesses
+                </h5>
+
+                <p class="text-muted mt-3">
+                    <strong>SolarSuccess</strong> is an award-winning NetSuite application
+                    optimized for residential, commercial, and utility-scale solar
+                    installers and developers. It is an all-in-one solar CRM designed
+                    to streamline operations and support rapid business growth.
+                </p>
+
+                <p class="text-muted">
+                    The platform delivers complete visibility across every customer
+                    touchpoint while empowering sales teams with accurate commission
+                    calculations, real-time inventory access, and data-driven proposals.
+                </p>
+
+                <ul class="text-muted">
+                    <li>End-to-end sales & CRM on NetSuite</li>
+                    <li>Accurate sales commission calculations</li>
+                    <li>Real-time inventory visibility</li>
+                    <li>Optimized for residential, commercial & utility solar</li>
+                    <li>Improves profitability and reduces soft costs</li>
+                </ul>
+
+                <a href="{% url 'leads:enquiry' %}" class="btn btn-success mt-3">
+                    Request a Demo
+                </a>
+            </div>
+
+            <!-- IMAGE / VISUAL -->
+            <div class="col-md-6 text-center">
+                <img src="{% static 'images/solarsuccess.png' %}"
+                     class="img-fluid rounded shadow-sm"
+                     alt="SolarSuccess CRM">
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- WHY CHOOSE US -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-md-6">
+                <h2 class="fw-bold">Built for Solar Teams</h2>
+                <p class="text-muted">
+                    With Solar CRM, you save time, improve conversion and scale your business.
+                </p>
+                <ul class="text-muted">
+                    <li>All your data in one place</li>
+                    <li>Automated reminders & follow-ups</li>
+                    <li>Reports & insights dashboards</li>
+                    <li>User roles & permissions</li>
+                </ul>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <img src="{% static 'images/solar_features.png' %}"
+                     class="img-fluid"
+                     alt="Solar CRM Features">
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- TESTIMONIALS SECTION -->
+<section class="py-5 bg-light">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Trusted by Solar Professionals</h2>
+            <p class="text-muted">
+                What solar businesses say about Solar CRM
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- TESTIMONIAL 1 -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <p class="text-muted">
+                            “Solar CRM helped us manage leads, installations,
+                            and payments in one place. Our conversions improved drastically.”
+                        </p>
+
+                        <div class="d-flex align-items-center mt-4">
+                            <img src="{% static 'images/user2.jpg' %}"
+                                 class="rounded-circle me-3"
+                                 width="50" height="50"
+                                 alt="User">
+                            <div>
+                                <h6 class="mb-0 fw-bold">Ramesh Kumar</h6>
+                                <small class="text-muted">
+                                    Founder, SunPower Solar
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TESTIMONIAL 2 -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <p class="text-muted">
+                            “Invoice generation, GST calculation and tracking payments
+                            became effortless after using Solar CRM.”
+                        </p>
+
+                        <div class="d-flex align-items-center mt-4">
+                            <img src="{% static 'images/user3.avif' %}"
+                                 class="rounded-circle me-3"
+                                 width="50" height="50"
+                                 alt="User">
+                            <div>
+                                <h6 class="mb-0 fw-bold">Anita Sharma</h6>
+                                <small class="text-muted">
+                                    Operations Head, GreenVolt Energy
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TESTIMONIAL 3 -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <p class="text-muted">
+                            “The dashboard analytics gave us complete clarity
+                            on revenue, installations and pending leads.”
+                        </p>
+
+                        <div class="d-flex align-items-center mt-4">
+                            <img src="{% static 'images/user4.jpg' %}"
+                                 class="rounded-circle me-3"
+                                 width="50" height="50"
+                                 alt="User">
+                            <div>
+                                <h6 class="mb-0 fw-bold">Suresh Patil</h6>
+                                <small class="text-muted">
+                                    Sales Manager, EcoSolar Pvt Ltd
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- CLIENT LOGOS SECTION -->
+ 
+<section class="py-5 bg-white">
+    <div class="container text-center">
+
+        <h5 class="fw-bold text-muted mb-4">
+            Trusted by 50+ Solar & Energy Companies
+        </h5>
+
+        <div class="row justify-content-center align-items-center g-4">
+
+            <div class="col-6 col-md-2">
+                <img src="{% static 'images/client4.jpg' %}" class="img-fluid client-logo" alt="Client">
+            </div>
+
+            <div class="col-6 col-md-2">
+                <img src="{% static 'images/client5.jpg' %}" class="img-fluid client-logo" alt="Client">
+            </div>
+
+            <div class="col-6 col-md-2">
+                <img src="{% static 'images/client6.jpg' %}" class="img-fluid client-logo" alt="Client">
+            </div>
+
+            <div class="col-6 col-md-2">
+                <img src="{% static 'images/client7.jpg' %}" class="img-fluid client-logo" alt="Client">
+            </div>
+
+            <div class="col-6 col-md-2">
+                <img src="{% static 'images/client8.jpg' %}" class="img-fluid client-logo" alt="Client">
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ANALYTICS SECTION -->
+<section class="py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Solar Business Analytics</h2>
+            <p class="text-muted">
+                Track leads, revenue and installations in real-time
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- LEADS CHART -->
+            <div class="col-md-6">
+                <div class="card shadow-sm p-3">
+                    <h5 class="fw-bold mb-3">Monthly Leads</h5>
+                    <canvas id="leadsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- REVENUE CHART -->
+            <div class="col-md-6">
+                <div class="card shadow-sm p-3">
+                    <h5 class="fw-bold mb-3">Monthly Revenue (₹)</h5>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="py-5 bg-success text-white text-center">
+    <div class="container">
+        <h2 class="fw-bold">Ready to Transform Your Solar Business?</h2>
+        <p class="mt-2">Start now with solar CRM — powerful, simple, and secure.</p>
+
+        <a href="{% url 'leads:enquiry' %}" class="btn btn-light btn-lg mt-3">
+            Get Started
+        </a>
+    </div>
+</section>
+<!-- STATS COUNTER SECTION -->
+<section class="py-5 bg-light">
+    <div class="container">
+
+        <div class="row text-center">
+
+            <div class="col-md-3 col-6 mb-4">
+                <h2 class="fw-bold text-success counter" data-target="1250">0</h2>
+                <p class="text-muted">Total Leads</p>
+            </div>
+
+            <div class="col-md-3 col-6 mb-4">
+                <h2 class="fw-bold text-success counter" data-target="820">0</h2>
+                <p class="text-muted">Installations Completed</p>
+            </div>
+
+            <div class="col-md-3 col-6 mb-4">
+                <h2 class="fw-bold text-success counter" data-target="45">0</h2>
+                <p class="text-muted">MW Solar Installed</p>
+            </div>
+
+            <div class="col-md-3 col-6 mb-4">
+                <h2 class="fw-bold text-success counter" data-target="12">0</h2>
+                <p class="text-muted">Years of Experience</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#freeTrialModal">
+    Start Free Trial
+</button>
+
+<!-- FLOATING ACTION BUTTONS -->
+<div class="floating-actions">
+
+    <!-- WhatsApp -->
+    <a href="https://wa.me/919876543210"
+       target="_blank"
+       class="fab whatsapp"
+       title="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+   <!-- FLOATING CALL & ENQUIRY -->
+<div class="floating-call-enquiry">
+
+    <!-- Enquiry -->
+    <a href="{% url 'leads:enquiry' %}"
+       class="float-btn enquiry"
+       title="Enquiry">
+        <i class="fa-solid fa-file-pen"></i>
+    </a>
+
+    <!-- Call -->
+    <a href="tel:+919876543210"
+       class="float-btn call"
+       title="Call Us">
+        <i class="fa-solid fa-phone"></i>
+    </a>
+
+</div>
+
+
+</div>
+
+{% endblock %}
