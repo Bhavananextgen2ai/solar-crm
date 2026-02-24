@@ -1,13 +1,12 @@
+import random
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib import messages
-
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from django.contrib import messages
+from django.core.mail import send_mail
 
 
+# ---------------- REGISTER ----------------
 def register_view(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -15,84 +14,89 @@ def register_view(request):
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
 
-        # Password match check
         if password1 != password2:
             messages.error(request, "Passwords do not match")
             return redirect("register")
 
-        # Username exists check
         if User.objects.filter(username=username).exists():
             messages.error(request, "Username already exists")
             return redirect("register")
 
-        # Email exists check
         if User.objects.filter(email=email).exists():
             messages.error(request, "Email already registered")
             return redirect("register")
 
-        # ✅ CREATE USER (IMPORTANT)
-        user = User.objects.create_user(
+        User.objects.create_user(
             username=username,
             email=email,
             password=password1
         )
-
-        user.save()
 
         messages.success(request, "Registration successful! Please login.")
         return redirect("login")
 
     return render(request, "accounts/register.html")
 
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
-from django.contrib import messages
 
-def login_view(request):
+# ---------------- EMAIL OTP LOGIN ----------------
+from django.db.models import Q
+
+def email_login(request):
     if request.method == "POST":
-        email = request.POST.get("email")
-        password = request.POST.get("password")
+        email = request.POST.get("email").strip()
 
-        try:
-            user_obj = User.objects.get(email=email)
-            username = user_obj.username
-        except User.DoesNotExist:
+        user = User.objects.filter(email__iexact=email).first()
+
+        if not user:
             messages.error(request, "Email not registered")
             return redirect("login")
 
-        user = authenticate(request, username=username, password=password)
+        otp = random.randint(100000, 999999)
 
-        if user is not None:
-            login(request, user)
-            messages.success(request, "Login successful!")
-            return redirect("home")
-        else:
-            messages.error(request, "Invalid password")
+        request.session['otp'] = otp
+        request.session['email'] = user.email  # use DB email
+
+        print("OTP:", otp)
+
+        send_mail(
+            "Your Solar CRM Login OTP",
+            f"Your OTP is {otp}",
+            "bbhavanadm@gmail.com",
+            [user.email],
+            fail_silently=False
+        )
+
+        return redirect("verify_otp")
 
     return render(request, "accounts/login.html")
 
-def logout_view(request):
-    logout(request)
-    return redirect('login')
 
-from .models import EmailOTP
 
-def otp_verify(request):
+# ---------------- VERIFY OTP ----------------
+def verify_otp(request):
     if request.method == "POST":
-        otp_input = request.POST.get("otp")
-        user_id = request.session.get("otp_user")
+        entered_otp = request.POST.get("otp")
+        session_otp = request.session.get("otp")
+        email = request.session.get("email")
 
-        otp_obj = EmailOTP.objects.filter(
-            user_id=user_id,
-            otp=otp_input
-        ).last()
+        if str(entered_otp) == str(session_otp):
+            user = User.objects.get(email__iexact=email)
 
-        if otp_obj:
-            login(request, otp_obj.user)
-            EmailOTP.objects.filter(user=otp_obj.user).delete()
-            return redirect("home")
+            login(request, user)
+
+            # Clear session
+            request.session.pop('otp', None)
+            request.session.pop('email', None)
+
+            return redirect("home")  # change to home
+
         else:
             messages.error(request, "Invalid OTP")
 
-    return render(request, "accounts/otp_verify.html")
+    return render(request, "accounts/verify_otp.html")
+
+
+# ---------------- LOGOUT ----------------
+def logout_view(request):
+    logout(request)
+    return redirect("login")

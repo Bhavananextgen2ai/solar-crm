@@ -93,32 +93,22 @@
                         </div>
                     {% endfor %}
                 {% endif %}
+<form method="post">
+    {% csrf_token %}
 
-                <form method="post">
-                    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label fw-semibold">Email</label>
+        <input type="email"
+               name="email"
+               class="form-control"
+               placeholder="you@company.com"
+               required>
+    </div>
 
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Email</label>
-                        <input type="email"
-                               name="email"
-                               class="form-control"
-                               placeholder="you@company.com"
-                               required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-semibold">Password</label>
-                        <input type="password"
-                               name="password"
-                               class="form-control"
-                               placeholder="••••••••"
-                               required>
-                    </div>
-
-                    <button class="btn btn-success w-100 mt-2">
-                        Login to Dashboard
-                    </button>
-                </form>
+    <button class="btn btn-success w-100 mt-2">
+        Send OTP
+    </button>
+</form>
 
                 <p class="login-hint text-center mt-4">
                     Secure • Encrypted • Trusted by solar professionals

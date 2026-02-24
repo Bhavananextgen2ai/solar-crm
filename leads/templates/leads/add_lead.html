@@ -1,9 +1,154 @@
 {% extends "base.html" %}
 {% block content %}
-<h3>Add Lead</h3>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Save Lead</button>
-</form>
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-light d-flex justify-content-between">
+            <h5 class="mb-0">Add To Enquiry</h5>
+            <a href="{% url 'leads:lead_list' %}" class="btn btn-sm btn-outline-secondary">Back</a>
+        </div>
+
+        <div class="card-body">
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="row">
+
+                    <!-- PROFILE IMAGE -->
+                    <div class="col-md-3 text-center border-end">
+                        <div class="mb-3">
+                            <label class="fw-bold">Profile Pic</label>
+                            <div class="mt-3">
+                                {{ form.profile_pic }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT FORM SECTION -->
+                    <div class="col-md-9">
+
+                        <!-- BASIC INFO -->
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label class="form-label">Person Name *</label>
+                                {{ form.name }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Mobile No *</label>
+                                {{ form.phone }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email ID *</label>
+                                {{ form.email }}
+                            </div>
+                        </div>
+
+                        <!-- SOURCE SECTION -->
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Source</label>
+                                {{ form.source }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Medium</label>
+                                {{ form.medium }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Campaign</label>
+                                {{ form.campaign }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Assign To</label>
+                                {{ form.assigned_to }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Remarks</label>
+                            {{ form.remarks }}
+                        </div>
+
+                        <!-- SHOW MORE COLLAPSE -->
+                        <div class="text-end">
+                            <button class="btn btn-sm btn-outline-primary"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#moreFields">
+                                + Show More
+                            </button>
+                        </div>
+
+                        <div class="collapse mt-3" id="moreFields">
+
+                            <hr>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Customer Type</label>
+                                    {{ form.customer_type }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Follow Up Date</label>
+                                    {{ form.follow_up_date }}
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Roof Type</label>
+                                    {{ form.roof_type }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Avg Monthly Bill</label>
+                                    {{ form.average_monthly_bill }}
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Financing Preference</label>
+                                    {{ form.financing_preference }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Sanctioned Load</label>
+                                    {{ form.sanctioned_load }}
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Installation Type</label>
+                                {{ form.installation_type }}
+                            </div>
+
+                        </div>
+
+                        <!-- BUTTONS -->
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="reset" class="btn btn-secondary me-2">
+                                Reset
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Save
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
 {% endblock %}
